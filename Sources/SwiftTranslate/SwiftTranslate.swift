@@ -1,8 +1,17 @@
 import Foundation
 
 public struct SwiftTranslate {
+    public enum TranslationError: Error {
+        case invalidURL
+        case emptyResponseData
+        case parsingError
+    }
+
     public static func translateText(text: String, sourceLanguage: String, targetLanguage: String) throws -> String {
-        let url = URL(string: "https://translate.argosopentech.com/translate")!
+        guard let url = URL(string: "https://translate.argosopentech.com/translate") else {
+            throw TranslationError.invalidURL
+        }
+
         let payload = [
             "q": text,
             "source": sourceLanguage,
@@ -16,6 +25,7 @@ public struct SwiftTranslate {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         let semaphore = DispatchSemaphore(value: 0)
+        var translatedText = ""
 
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             defer {
@@ -34,8 +44,8 @@ public struct SwiftTranslate {
 
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                   let translatedText = json["translatedText"] as? String {
-                    print(translatedText)
+                   let translated = json["translatedText"] as? String {
+                    translatedText = translated
                 }
             } catch {
                 print("Error parsing response: \(error)")
@@ -44,6 +54,11 @@ public struct SwiftTranslate {
 
         task.resume()
         semaphore.wait()
-        return ""
+
+        if translatedText.isEmpty {
+            throw TranslationError.emptyResponseData
+        }
+
+        return translatedText
     }
 }
