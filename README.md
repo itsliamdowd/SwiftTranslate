@@ -1,3 +1,3 @@
 # SwiftTranslate
 
-A description of this package.
+It just works! Easy to use Swift Translation. No API Key required!
