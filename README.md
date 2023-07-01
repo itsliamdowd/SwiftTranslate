@@ -2,6 +2,15 @@
 
 It just works! Easy to use Swift Translation. No API Key required!
 
+## Setup
+ - Open your Xcode project
+ - Click File > Add Packages
+ - Paste in https://github.com/SkiingIsFun123/SwiftTranslate
+ - Click the Add Package button on the bottom right side
+
+## Example
+
+
 ## Languages Supported
 - Arabic: ar
 - Azerbaijani: az
