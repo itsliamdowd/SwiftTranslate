@@ -44,3 +44,7 @@ It just works! Easy to use Swift Translation. No API Key required!
 - Turkish: tr
 - Ukrainian: uk
 - Vietnamese: vi
+
+## Acknowledgement
+Swift Translate is based off of LibreTranslate. Thanks for making this package possible!
+https://github.com/LibreTranslate/LibreTranslate
