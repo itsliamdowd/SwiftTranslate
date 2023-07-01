@@ -1,7 +1,7 @@
 import Foundation
 
-struct SwiftTranslate {
-    static func translateText(text: String, sourceLanguage: String, targetLanguage: String) throws -> String {
+public struct SwiftTranslate {
+    public func translateText(text: String, sourceLanguage: String, targetLanguage: String) throws -> String {
         let url = URL(string: "https://translate.argosopentech.com/translate")!
         let payload = [
             "q": text,
