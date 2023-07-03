@@ -9,7 +9,23 @@ It just works! Easy to use Swift Translation. No API Key required!
  - Click the Add Package button on the bottom right side
 
 ## Example
+```
+import Foundation
 
+// Example function that demonstrates the usage of SwiftTranslate struct
+func translateExample() {
+    let sourceText = "Hello world!"
+    let sourceLanguage = "en"
+    let targetLanguage = "fr"
+
+    let translatedText = try SwiftTranslate.translateText(text: sourceText, sourceLanguage: sourceLanguage, targetLanguage: targetLanguage)
+    print("Source Text: \(sourceText)")
+    print("Translated Text: \(translatedText)")
+}
+
+// Call the example function
+translateExample()
+```
 
 ## Languages Supported
 - Arabic: ar
