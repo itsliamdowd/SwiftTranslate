@@ -1,15 +1,9 @@
 import Foundation
 
 public struct SwiftTranslate {
-    public enum TranslationError: Error {
-        case invalidURL
-        case emptyResponseData
-        case parsingError
-    }
-
-    public static func translateText(text: String, sourceLanguage: String, targetLanguage: String) throws -> String {
+    public static func translateText(text: String, sourceLanguage: String, targetLanguage: String) -> String {
         guard let url = URL(string: "https://translate.argosopentech.com/translate") else {
-            throw TranslationError.invalidURL
+            return text // Return original string if the URL is invalid
         }
 
         let payload = [
@@ -17,7 +11,7 @@ public struct SwiftTranslate {
             "source": sourceLanguage,
             "target": targetLanguage
         ]
-        let jsonData = try JSONSerialization.data(withJSONObject: payload, options: [])
+        let jsonData = try? JSONSerialization.data(withJSONObject: payload, options: [])
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -56,7 +50,7 @@ public struct SwiftTranslate {
         semaphore.wait()
 
         if translatedText.isEmpty {
-            throw TranslationError.emptyResponseData
+            return text // Return original string if translated text is empty
         }
 
         return translatedText
