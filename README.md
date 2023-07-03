@@ -28,6 +28,7 @@ translateExample()
 ```
 
 ## Languages Supported
+Please note that translation provided may not be 100% accurate. Additionally, some languages may be better supported than others so use at your own risk.
 - Arabic: ar
 - Azerbaijani: az
 - Chinese: zh
